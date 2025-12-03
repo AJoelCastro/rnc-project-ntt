@@ -11,6 +11,8 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import TransactionPage from './src/pages/TransactionPage';
+
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -28,10 +30,7 @@ function AppContent() {
 
   return (
     <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
+      <TransactionPage safeAreaInsets={safeAreaInsets} />
     </View>
   );
 }
