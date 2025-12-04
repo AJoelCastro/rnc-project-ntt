@@ -10,7 +10,7 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import TransactionPage from '@/pages/transaction';
+import TransactionPage from '@pages/transaction';
 
 
 function App() {

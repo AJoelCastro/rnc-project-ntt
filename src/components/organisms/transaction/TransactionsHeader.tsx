@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Transaction } from '@/data/MockTransactions';
+import { Transaction } from '@data/MockTransactions';
 
 interface Props {
   transactions: Transaction[];
