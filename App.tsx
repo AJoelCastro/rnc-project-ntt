@@ -11,6 +11,8 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import TransactionPage from '@/modules/transaction/pages';
+import { useTheme } from '@/shared/hooks/useTheme'
+import { NetworkStatusCard } from '@/modules/network-monitor/components/molecules/NetworkStatusCard';
 
 
 function App() {
@@ -26,10 +28,27 @@ function App() {
 
 function AppContent() {
   const safeAreaInsets = useSafeAreaInsets();
+  const {colors} = useTheme()
 
   return (
-    <View style={styles.container}>
-      <TransactionPage safeAreaInsets={safeAreaInsets} />
+    <View 
+      style={
+        [
+          styles.container,
+          {
+            paddingTop: safeAreaInsets!.top,
+            paddingLeft: safeAreaInsets!.left,
+            paddingRight: safeAreaInsets!.right,
+            paddingBottom: safeAreaInsets!.bottom,
+            backgroundColor: colors.background,
+
+          }
+        ]
+      }
+    >
+      <NetworkStatusCard connectionInfo={{type:"wifi", isConnected:true, isInternetReachable:true}}/>
+
+      <TransactionPage />
     </View>
   );
 }
