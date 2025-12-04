@@ -1,5 +1,5 @@
 import React from 'react'
-import { TransactionsList } from '../components/organisms/TransactionList'
+import { TransactionsList } from 'react-native-rnc-library-ntt'
 
 const TransactionPage = () => {
     return (
