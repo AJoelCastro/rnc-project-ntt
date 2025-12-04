@@ -1,8 +1,8 @@
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
-import { useTheme } from '../theme/useTheme'
+import { useTheme } from '@/hooks/useTheme'
 import { EdgeInsets } from 'react-native-safe-area-context'
-import { TransactionsList } from '../components/TransactionList'
+import { TransactionsList } from '@/components/organisms/transaction/TransactionList'
 
 type TransactionPageProps = {
     safeAreaInsets?: EdgeInsets

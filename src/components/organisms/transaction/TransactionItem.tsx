@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Transaction } from '../data/MockTransactions'; 
+import { Transaction } from '@/data/MockTransactions'; 
+import { Password } from 'react-native-rnc-library-ntt';
 
 interface Props {
   item: Transaction;
@@ -37,6 +38,7 @@ export const TransactionItem = ({ item }: Props) => {
       >
         {formattedAmount}
       </Text>
+      <Password/>
     </View>
   );
 };

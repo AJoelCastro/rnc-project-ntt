@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, View } from 'react-native';
-import { MOCK_TRANSACTIONS } from '../data/MockTransactions';
+import { MOCK_TRANSACTIONS } from '../../../data/MockTransactions';
 import { TransactionItem } from './TransactionItem';
 import { TransactionsHeader } from './TransactionsHeader';
 
