@@ -12,6 +12,7 @@ import {
 } from 'react-native-safe-area-context';
 import TransactionPage from '@/modules/transaction/pages';
 import { useTheme } from '@/shared/hooks/useTheme'
+import { NetworkStatusCard } from '@/modules/network-monitor/components/molecules/NetworkStatusCard';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -44,6 +45,7 @@ function AppContent() {
         ]
       }
     >
+      {/* <NetworkStatusCard connectionInfo={{type:"wifi", isConnected:true, isInternetReachable:true}}/> */}
       <TransactionPage />
     </View>
   );

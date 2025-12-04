@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
 import { MOCK_TRANSACTIONS } from '@/shared/data/MockTransactions';
 import { TransactionItem } from './TransactionItem';
-import { TransactionsHeader } from './TransactionsHeader';
+import { TransactionsHeader } from './TransactionHeader';
 
 export const TransactionsList = () => {
   return (
