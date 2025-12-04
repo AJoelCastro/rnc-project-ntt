@@ -1,10 +1,11 @@
 import React from 'react'
-import { TransactionsList } from '@/modules/transaction/components/organisms/TransactionList'
+import { TransactionsList } from '../components/organisms/TransactionList'
 
 const TransactionPage = () => {
-
     return (
-        <TransactionsList/>
+        <>
+            <TransactionsList/>
+        </>
     )
 }
 
