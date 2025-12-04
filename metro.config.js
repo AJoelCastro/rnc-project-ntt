@@ -24,6 +24,7 @@ const config = {
       'react': path.resolve(__dirname, 'node_modules/react'),
       'react-native': path.resolve(__dirname, 'node_modules/react-native'),
     },
+    
   },
 
   // Configuración de watchman
@@ -32,6 +33,7 @@ const config = {
       enabled: true,
     },
   },
+
 };
 
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);
