@@ -9,7 +9,7 @@ export interface Transaction {
  
 export const MOCK_TRANSACTIONS: Transaction[] = [
  
-  { id: '1', description: 'Salario Noviembre', amount: 3500.00, date: '2025-11-27', type: 'income', category: 'Salario' },
+  { id: '1', description: 'Salario Noviembre', amount: 3350.00, date: '2025-11-27', type: 'income', category: 'Salario' },
   { id: '2', description: 'Supermercado Wong', amount: 245.50, date: '2025-11-26', type: 'expense', category: 'Alimentación' },
   { id: '3', description: 'Netflix', amount: 44.90, date: '2025-11-25', type: 'expense', category: 'Entretenimiento' },
   { id: '4', description: 'Uber', amount: 18.50, date: '2025-11-25', type: 'expense', category: 'Transporte' },
