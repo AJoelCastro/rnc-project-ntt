@@ -36,7 +36,7 @@ const WelcomeScreen = (props: Props) => {
       id: 'préstamos',
       title: 'Préstamos',
       description: 'Descubre los préstamos que tenemos para ti',
-      onPress: () => navigation.navigate('Préstamos'),
+      onPress: () => navigation.navigate('LeanHome'),
     },
     {
       id: 'servicios',
