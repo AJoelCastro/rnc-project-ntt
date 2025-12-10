@@ -6,47 +6,51 @@
  */
 
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-import TransactionPage from '@/modules/transaction/pages';
+
 import { useTheme } from '@/shared/hooks/useTheme'
-import { NetworkStatusCard } from '@/modules/network-monitor/components/molecules/NetworkStatusCard';
+import { NavigationContainer } from '@react-navigation/native';
+import RootLayout from '@/routes/root.stack/_layout';
+
+const linking = {
+  prefixes: ['example://'],
+  config: {
+    screens: {
+      LoginScreen: 'login',
+    },
+  },
+};
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
+
+    <NavigationContainer linking={linking}>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <AppContent />
+    </NavigationContainer>
+
   );
 }
 
 function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
   const {colors} = useTheme()
 
   return (
+
     <View 
       style={
         [
           styles.container,
           {
-            paddingTop: safeAreaInsets!.top,
-            paddingLeft: safeAreaInsets!.left,
-            paddingRight: safeAreaInsets!.right,
-            paddingBottom: safeAreaInsets!.bottom,
+            
             backgroundColor: colors.background,
 
           }
         ]
       }
     >
-      {/* <NetworkStatusCard connectionInfo={{type:"wifi", isConnected:true, isInternetReachable:true}}/> */}
-      <TransactionPage />
+      <RootLayout/>
     </View>
   );
 }
