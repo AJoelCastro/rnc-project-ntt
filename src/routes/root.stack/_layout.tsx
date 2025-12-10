@@ -11,7 +11,7 @@ const RootLayout = (props: Props) => {
   return (
     <Stack.Navigator>
         <Stack.Screen
-          name="Login"
+          name="Authentication"
           component={AuthenticationLayout}
           options={{ headerShown: false }}
         />
