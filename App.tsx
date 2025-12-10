@@ -10,6 +10,7 @@ import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 import { useTheme } from '@/shared/hooks/useTheme'
 import { NavigationContainer } from '@react-navigation/native';
 import RootLayout from '@/routes/root.stack/_layout';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const linking = {
   prefixes: ['example://'],
@@ -35,10 +36,10 @@ function App() {
 
 function AppContent() {
   const {colors} = useTheme()
-
+  
   return (
 
-    <View 
+    <SafeAreaView 
       style={
         [
           styles.container,
@@ -51,7 +52,7 @@ function AppContent() {
       }
     >
       <RootLayout/>
-    </View>
+    </SafeAreaView>
   );
 }
 

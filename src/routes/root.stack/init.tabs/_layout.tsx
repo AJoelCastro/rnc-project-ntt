@@ -20,14 +20,20 @@ const InitLayout = (props: Props) => {
             
         />
         <Tab.Screen
-            name='Profile'
+            name='Chat'
             component={()=><View></View>}
-            options={{headerShown: false}}
+            options={{
+              headerShown: false,
+              tabBarIcon: () => <Text>💬</Text>,
+            }}
         />
         <Tab.Screen
-            name='Settings'
+            name='Configuracion'
             component={()=><View></View>}
-            options={{headerShown: false}}
+            options={{
+              headerShown: false,
+              tabBarIcon: () => <Text>⚙️</Text>,
+            }}
         />
     </Tab.Navigator>
   )
