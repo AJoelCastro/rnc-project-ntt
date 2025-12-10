@@ -1,6 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text, View } from 'react-native';
 import HomeLayout from './home/_layout';
+import ChatLayout from './chat/_layout';
+import ConfigurationLayout from './configuration/_layout';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +23,7 @@ const InitLayout = (props: Props) => {
         />
         <Tab.Screen
             name='Chat'
-            component={()=><View></View>}
+            component={ChatLayout}
             options={{
               headerShown: false,
               tabBarIcon: () => <Text>💬</Text>,
@@ -29,7 +31,7 @@ const InitLayout = (props: Props) => {
         />
         <Tab.Screen
             name='Configuracion'
-            component={()=><View></View>}
+            component={ConfigurationLayout}
             options={{
               headerShown: false,
               tabBarIcon: () => <Text>⚙️</Text>,
