@@ -22,6 +22,13 @@
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+          <!-- Configuración para deeplinking -->
+          <intent-filter>
+              <action android:name="android.intent.action.VIEW" />
+              <category android:name="android.intent.category.DEFAULT" />
+              <category android:name="android.intent.category.BROWSABLE" />
+              <data android:scheme="example" /> <!-- Esquema que determinará el prefix de nuestra url -->
+          </intent-filter>
       </activity>
     </application>
 </manifest>
