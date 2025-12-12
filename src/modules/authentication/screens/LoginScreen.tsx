@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
   Alert,
 } from 'react-native'
+import { InputEmail, InputPassword } from '@arturocastro/react-native-rnc-library-ntt'
 
 type Props = {
   navigation?: any
@@ -30,22 +30,14 @@ const LoginScreen = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Iniciar sesión</Text>
-
-      <TextInput
+      
+      <InputEmail
         value={email}
         onChangeText={setEmail}
-        placeholder="Email"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        style={styles.input}
       />
-
-      <TextInput
+      <InputPassword
         value={password}
         onChangeText={setPassword}
-        placeholder="Contraseña"
-        secureTextEntry
-        style={styles.input}
       />
 
       <TouchableOpacity style={styles.button} onPress={onLogin}>

@@ -10,6 +10,7 @@ import {
   Platform,
   Alert,
 } from 'react-native';
+import { Button, InputEmail, Selector } from '@arturocastro/react-native-rnc-library-ntt';
 
 type Props = {};
 
@@ -75,16 +76,8 @@ const LeanScreen = (props: Props) => {
           </View>
         </View>
 
-        <View style={styles.fieldWrapper}>
-          <TextInput
-            style={styles.input}
-            placeholder="Correo electrónico"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            value={email}
-            onChangeText={setEmail}
-          />
-        </View>
+        <InputEmail
+        />
 
         <View style={styles.fieldWrapperRow}>
           <TextInput
@@ -144,16 +137,13 @@ const LeanScreen = (props: Props) => {
           )}
         </View>
 
-        <View style={styles.fieldWrapperRow}>
-          <TouchableOpacity style={[styles.input, styles.selectInput]} onPress={() => { /* aquí podrías abrir un picker */ }}>
-            <Text style={styles.selectText}>{installments || 'Cuotas'}</Text>
-            <Text style={styles.chev}>⌃</Text>
-          </TouchableOpacity>
-        </View>
+        <Selector
+        />
 
-        <TouchableOpacity style={styles.submitButton} onPress={onSubmit} accessibilityLabel="Enviar datos">
-          <Text style={styles.submitText}>Enviar datos</Text>
-        </TouchableOpacity>
+        <Button
+            title='Enviar datos'
+            type='secondary'
+        />
       </ScrollView>
     </KeyboardAvoidingView>
   );

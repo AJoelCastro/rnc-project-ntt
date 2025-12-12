@@ -1,5 +1,5 @@
 import React from 'react'
-import { TransactionsList } from 'react-native-rnc-library-ntt'
+import { TransactionsList } from '@arturocastro/react-native-rnc-library-ntt'
 
 const TransactionScreen = () => {
     return (
