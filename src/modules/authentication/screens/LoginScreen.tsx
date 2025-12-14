@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native'
+import { CommonActions, useNavigation } from '@react-navigation/native'
 import React, { useState } from 'react'
 import {
   View,
@@ -44,7 +44,14 @@ const LoginScreen = ({ navigation }: Props) => {
       })
       // Aquí iría la lógica real de autenticación
       setTimeout(() => {
-        navigate.navigate('Init' as never)
+        navigate.dispatch(
+            CommonActions.reset({
+                index: 0,
+                routes: [
+                    { name: 'Init' as never }, // Define la nueva pila con 'Init' como única ruta
+                ],
+            })
+        );
         setIsLoading(false)
       }, 2000);
     } catch (error) {

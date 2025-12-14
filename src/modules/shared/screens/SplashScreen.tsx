@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Animated, Easing } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import { useTheme } from '@/modules/shared/hooks/useTheme'
-import { useNavigation } from '@react-navigation/native'
+import { CommonActions, useNavigation } from '@react-navigation/native'
 import { SecureStorage } from '@arturocastro/react-native-rnc-library-ntt'
 import { useLogin } from '@/store/LoginStore'
 
@@ -28,10 +28,24 @@ const SplashScreen = ({isInitializing, nextScreen}: Props) => {
     
       if (token !== undefined && token !== null) {
         console.log("Token found, navigating to Init:", token);
-        navigate.navigate('Init' as never);
+        navigate.dispatch(
+            CommonActions.reset({
+                index: 0,
+                routes: [
+                    { name: 'Init' as never }, // Define la nueva pila con 'Init' como única ruta
+                ],
+            })
+        );
       } else {
         console.log("No token found, navigating to Login.");
-        navigate.navigate('Login' as never);
+        navigate.dispatch(
+            CommonActions.reset({
+                index: 0,
+                routes: [
+                    { name: 'Login' as never }, // Define la nueva pila con 'Init' como única ruta
+                ],
+            })
+        );
       }
     }
     if(isInitializing) {
@@ -41,7 +55,14 @@ const SplashScreen = ({isInitializing, nextScreen}: Props) => {
     }
     if(nextScreen) {
         setTimeout(() => {
-            navigate.navigate(nextScreen as never);
+            navigate.dispatch(
+            CommonActions.reset({
+                index: 0,
+                routes: [
+                    { name: nextScreen as never }, // Define la nueva pila con 'Init' como única ruta
+                ],
+            })
+        );
         }, 2000);
     }
     
