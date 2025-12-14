@@ -15,7 +15,7 @@ type WelcomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>
 
 type Props = {};
 
-const WelcomeScreen = (props: Props) => {
+const WelcomeScreen = ({}: Props) => {
   const navigation = useNavigation<WelcomeScreenNavigationProp>();
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -24,19 +24,19 @@ const WelcomeScreen = (props: Props) => {
       id: 'tarjetas',
       title: 'Tarjetas',
       description: 'Se listarán tus tarjetas de crédito y débito',
-      onPress: () => navigation.navigate('Tarjetas'),
+      onPress: () => navigation.navigate('CardHome' as never),
     },
     {
       id: 'movimientos',
       title: 'Movimientos',
       description: 'Aquí verás todos tus movimientos',
-      onPress: () => navigation.navigate('TransactionHome'),
+      onPress: () => navigation.navigate('TransactionHome' as never),
     },
     {
       id: 'préstamos',
       title: 'Préstamos',
       description: 'Descubre los préstamos que tenemos para ti',
-      onPress: () => navigation.navigate('LeanHome'),
+      onPress: () => navigation.navigate('LeanHome' as never),
     },
     {
       id: 'servicios',
