@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import HomeLayout from './home/_layout';
 import ChatLayout from './chat/_layout';
 import ConfigurationLayout from './configuration/_layout';
@@ -8,7 +8,7 @@ const Tab = createBottomTabNavigator();
 
 type Props = {}
 
-const InitLayout = (props: Props) => {
+const InitLayout = ({}: Props) => {
   return (
     <Tab.Navigator>
         <Tab.Screen

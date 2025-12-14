@@ -15,7 +15,6 @@ const RootLayout = ({}: Props) => {
           component={AuthenticationLayout}
           options={{ headerShown: false }}
         />
-        
         <Stack.Screen
           name="Init"
           component={InitLayout}

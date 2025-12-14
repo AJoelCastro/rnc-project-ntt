@@ -1,4 +1,3 @@
-import { View, Text } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import TransactionScreen from '@/modules/transaction/screens/TransactionScreen';
@@ -9,7 +8,7 @@ const Stack = createNativeStackNavigator();
 
 type Props = {}
 
-const HomeLayout = (props: Props) => {
+const HomeLayout = ({}: Props) => {
   return (
     <Stack.Navigator>
       <Stack.Screen

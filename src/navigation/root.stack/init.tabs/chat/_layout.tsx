@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { Text } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
@@ -6,7 +6,7 @@ const Stack = createNativeStackNavigator();
 
 type Props = {}
 
-const ChatLayout = (props: Props) => {
+const ChatLayout = ({}: Props) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
