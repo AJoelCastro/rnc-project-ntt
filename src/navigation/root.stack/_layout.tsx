@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator();
 
 type Props = {}
 
-const RootLayout = (props: Props) => {
+const RootLayout = ({}: Props) => {
   return (
     <Stack.Navigator>
         <Stack.Screen

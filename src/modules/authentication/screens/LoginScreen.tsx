@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Alert,
 } from 'react-native'
-import { InputEmail, InputPassword } from '@arturocastro/react-native-rnc-library-ntt'
+import { InputEmail, InputPassword, SecureStorage } from '@arturocastro/react-native-rnc-library-ntt'
 
 type Props = {
   navigation?: any
@@ -17,14 +17,15 @@ const LoginScreen = ({ navigation }: Props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigation();
-  const onLogin = () => {
-    // if (!email || !password) {
-    //   Alert.alert('Error', 'Por favor ingresa email y contraseña')
-    //   return
-    // }
+  const onLogin = async () => {
+    if (!email || !password) {
+      Alert.alert('Error', 'Por favor ingresa email y contraseña')
+      return
+    }
+    await SecureStorage.setItem('token', 'dummy-auth-token')
+
     // Aquí iría la lógica real de autenticación
     navigate.navigate('Init')
-    // Alert.alert('Login', `Email: ${email}`)
   }
 
   return (

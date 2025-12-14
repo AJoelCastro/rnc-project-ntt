@@ -7,7 +7,7 @@
 
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
 
-import { useTheme } from '@/shared/hooks/useTheme'
+import { useTheme } from '@/modules/shared/hooks/useTheme'
 import { NavigationContainer } from '@react-navigation/native';
 import RootLayout from '@/navigation/root.stack/_layout';
 import { SafeAreaView } from 'react-native-safe-area-context';
