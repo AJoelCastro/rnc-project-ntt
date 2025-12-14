@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import { useTheme } from '@/modules/shared/hooks/useTheme'
 import { useNavigation } from '@react-navigation/native'
 import { SecureStorage } from '@arturocastro/react-native-rnc-library-ntt'
+import { useLogin } from '@/store/LoginStore'
 
 type Props = {
     isInitializing?: boolean
@@ -16,13 +17,15 @@ const SplashScreen = ({isInitializing, nextScreen}: Props) => {
   const scaleAnim = useRef(new Animated.Value(0.5)).current
   const translateYAnim = useRef(new Animated.Value(50)).current
   const navigate = useNavigation();
-  
+  const { userData } = useLogin()
   useEffect(() => {
     const checkTokenAndNavigate = async () => {
-      // 1. Usar await para obtener el valor REAL del token (string o null)
-      const token = await SecureStorage.getItem('token'); 
-      
-      // 2. La variable 'token' ahora contiene el string (si existe) o null (si no existe).
+      // Aqui se valoida con el token nativo
+       const token = await SecureStorage.getItem('token'); 
+
+      // Aqui se valida con el token de store en zustandxs
+    //   const token = userData?.token
+    
       if (token !== undefined && token !== null) {
         console.log("Token found, navigating to Init:", token);
         navigate.navigate('Init' as never);
@@ -46,7 +49,7 @@ const SplashScreen = ({isInitializing, nextScreen}: Props) => {
 
     // Nota: Es mejor limpiar el efecto para evitar navegaciones duplicadas
     // si el componente se desmonta mientras la promesa está pendiente.
-  }, [navigate, isInitializing, nextScreen]) // Dependencia de navigate
+  }, [navigate, isInitializing, nextScreen, userData]) // Dependencia de navigate
   
   useEffect(() => {
     Animated.parallel([
