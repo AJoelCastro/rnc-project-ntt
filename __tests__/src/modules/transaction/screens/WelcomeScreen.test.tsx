@@ -21,5 +21,14 @@ describe('WelcomeScreen', () => {
         const { getByText } = render(<WelcomeScreen />);
         fireEvent.press(getByText('Tarjetas'));
         expect(mockNavigate).toHaveBeenCalledWith('CardHome');
+
+        fireEvent.press(getByText('Movimientos'));
+        expect(mockNavigate).toHaveBeenCalledWith('TransactionHome');
+
+        fireEvent.press(getByText('Préstamos'));
+        expect(mockNavigate).toHaveBeenCalledWith('LeanHome');
+
+        fireEvent.press(getByText('Servicios'));
+        expect(mockNavigate).toHaveBeenCalledWith('ServicesHome');
     });
 });

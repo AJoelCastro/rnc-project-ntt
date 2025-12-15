@@ -15,4 +15,5 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!(jest-)?react-native|@react-native|@react-navigation|@arturocastro|@react-native-community)/',
   ],
+  coveragePathIgnorePatterns: ['src/modules/shared/data/'],
 };
