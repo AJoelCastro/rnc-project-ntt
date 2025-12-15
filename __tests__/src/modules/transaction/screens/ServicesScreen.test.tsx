@@ -3,9 +3,12 @@ import { render, fireEvent } from '@testing-library/react-native';
 import ServicesScreen from '@/modules/transaction/screens/ServicesScreen';
 
 const mockNavigate = jest.fn();
+const mockGoBack = jest.fn();
+
 jest.mock('@react-navigation/native', () => ({
     useNavigation: () => ({
-        goBack: mockNavigate,
+        navigate: mockNavigate,
+        goBack: mockGoBack,
     }),
 }));
 
@@ -16,7 +19,7 @@ jest.mock('@arturocastro/react-native-rnc-library-ntt', () => {
         InputWithDelete: (props: any) => (
             <TextInput value={props.value} onChangeText={props.onChangeText} placeholder={props.placeholder} testID="search-input" />
         ),
-        ServiceItem: (props: any) => <Text testID="service-item">{props.title}</Text>,
+        ServiceItem: (props: any) => <Text testID="service-item" onPress={props.onPress}>{props.title}</Text>,
     };
 });
 
@@ -30,6 +33,10 @@ jest.mock('@/modules/shared/data/MockServices', () => ({
 }));
 
 describe('ServicesScreen', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
     it('renders correctly', () => {
         const { getByText, getAllByTestId } = render(<ServicesScreen />);
         expect(getByText('Servicios')).toBeTruthy();
@@ -43,5 +50,11 @@ describe('ServicesScreen', () => {
 
         expect(getByText('Netflix')).toBeTruthy();
         expect(queryByText('Spotify')).toBeNull();
+    });
+
+    it('navigates to detail screen on press', () => {
+        const { getByText } = render(<ServicesScreen />);
+        fireEvent.press(getByText('Netflix'));
+        expect(mockNavigate).toHaveBeenCalledWith('ServiceDetailHome', { id: 1 });
     });
 });

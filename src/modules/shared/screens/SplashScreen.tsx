@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Animated, Easing } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import { useTheme } from '@/modules/shared/hooks/useTheme'
 import { CommonActions, useNavigation } from '@react-navigation/native'
-// import { SecureStorage } from '@arturocastro/react-native-rnc-library-ntt'
+import { SecureStorage } from '@arturocastro/react-native-rnc-library-ntt'
 import { useLogin } from '@/store/LoginStore'
 
 type Props = {
@@ -21,10 +21,10 @@ const SplashScreen = ({ isInitializing, nextScreen }: Props) => {
   useEffect(() => {
     const checkTokenAndNavigate = async () => {
       // Aqui se valoida con el token nativo
-      //const token = await SecureStorage.getItem('token'); 
+      const token = await SecureStorage.getItem('token');
 
       // Aqui se valida con el token de store en zustandxs
-      const token = userData?.token
+      //const token = userData?.token
 
       if (token !== undefined && token !== null) {
         console.log("Token found, navigating to Init:", token);
