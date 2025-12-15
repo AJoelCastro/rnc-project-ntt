@@ -32,6 +32,9 @@ const LoginScreen = ({ navigation }: Props) => {
     }
     try {
       await SecureStorage.setItem('email', email)
+      await SecureStorage.setItem('name', 'Arturo')
+      await SecureStorage.setItem('lastName', 'Castro')
+      await SecureStorage.setItem('phone', '924187731')
       await SecureStorage.setItem('password', password)
       await SecureStorage.setItem('token', 'dummy-auth-token')
       setUserData({

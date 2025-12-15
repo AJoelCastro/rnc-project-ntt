@@ -1,35 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
   ScrollView,
   StyleSheet,
   TextInput,
-  TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
   Alert,
 } from 'react-native';
-import { Button, InputEmail, Selector } from '@arturocastro/react-native-rnc-library-ntt';
+import { Button, Header, InputEmail, InputWithDelete, SecureStorage, Selector } from '@arturocastro/react-native-rnc-library-ntt';
+import { useNavigation } from '@react-navigation/native';
+import { SelectorItem } from 'node_modules/@arturocastro/react-native-rnc-library-ntt/lib/typescript/src/modules/shared/types';
 
 type Props = {};
 
-const LeanScreen = (props: Props) => {
-  const [docType, setDocType] = useState<'D.N.I.' | 'R.U.C.'>('D.N.I.');
+const installmentOptions: SelectorItem[] = [
+  { id: 1, label: '3 cuotas' },
+  { id: 2, label: '6 cuotas' },
+  { id: 3, label: '12 cuotas' },
+];
+const docOptions: SelectorItem[] = [
+  { id: 1, label: 'DNI' },
+  { id: 2, label: 'RUC' },
+];
+
+const LeanScreen = ({}: Props) => {
+  
+  const [docType, setDocType] = useState<number | string>('');
   const [docNumber, setDocNumber] = useState('');
   const [email, setEmail] = useState('');
+  const [isValidEmail, setIsValidEmail] = useState(false);
   const [phone, setPhone] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [amount, setAmount] = useState('');
-  const [installments, setInstallments] = useState('');
+  const [installments, setInstallments] = useState<number | string>('');
 
-  const clear = (setter: (v: string) => void) => () => setter('');
+  const navigation = useNavigation();
 
   const onSubmit = () => {
-    // simple validation
     if (!docNumber.trim()) return Alert.alert('Validación', 'Ingrese número de documento');
-    if (!email.trim() || !email.includes('@')) return Alert.alert('Validación', 'Ingrese un correo válido');
     if (!phone.trim()) return Alert.alert('Validación', 'Ingrese teléfono');
 
     const payload = {
@@ -47,24 +58,45 @@ const LeanScreen = (props: Props) => {
     Alert.alert('Enviado', 'Tus datos han sido enviados.');
   };
 
+  const getNativeData = async() => {
+    const emailNative = await SecureStorage.getItem('email')
+    const phoneNative = await SecureStorage.getItem('phone')
+    const nameNative = await SecureStorage.getItem('name')
+    const lastNameNative = await SecureStorage.getItem('lastName')
+    setEmail(emailNative!)
+    setPhone(phoneNative!)
+    setFirstName(nameNative!)
+    setLastName(lastNameNative!)
+  }
+  const handleInstallmentSelect = (item: SelectorItem) => {
+    setInstallments(item.id);
+  };
+  const handleDocSelect = (item: SelectorItem) => {
+    setDocType(item.id);
+  };
+  useEffect(() => {
+    getNativeData()
+  }, [])
+  
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
+      <Header title='Préstamos' iconName='' onBack={()=>navigation.goBack()}/>
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Formulario</Text>
         <Text style={styles.subtitle}>Completa tus datos y un colaborador se contactará contigo</Text>
 
         <View style={styles.row}>
-          <TouchableOpacity
-            style={styles.docTypeButton}
-            onPress={() => setDocType((d) => (d === 'D.N.I.' ? 'R.U.C.' : 'D.N.I.'))}
-            accessibilityLabel="Cambiar tipo de documento"
-          >
-            <Text style={styles.docTypeText}>{docType} <Text style={styles.chev}>⌃</Text></Text>
-          </TouchableOpacity>
-
+          <View style={{minWidth: '30%'}}>
+            <Selector
+              items={docOptions}
+              onSelect={handleDocSelect}
+              selectedId={docType}
+              placeholder='Doc'
+            />
+          </View>
           <View style={styles.flexInput}>
             <TextInput
               style={[styles.input, styles.inputRight]}
@@ -77,73 +109,47 @@ const LeanScreen = (props: Props) => {
         </View>
 
         <InputEmail
+          value={email}
+          onChangeText={setEmail}
+          onValidation={setIsValidEmail}
+          placeholder='Correo'
         />
-
-        <View style={styles.fieldWrapperRow}>
-          <TextInput
-            style={styles.input}
-            placeholder="Número de celular"
-            keyboardType="phone-pad"
-            value={phone}
-            onChangeText={setPhone}
-          />
-          {phone.length > 0 && (
-            <TouchableOpacity style={styles.clearButton} onPress={clear(setPhone)}>
-              <Text style={styles.clearText}>✕</Text>
-            </TouchableOpacity>
-          )}
-        </View>
-
-        <View style={styles.fieldWrapperRow}>
-          <TextInput
-            style={styles.input}
-            placeholder="Nombres"
-            value={firstName}
-            onChangeText={setFirstName}
-          />
-          {firstName.length > 0 && (
-            <TouchableOpacity style={styles.clearButton} onPress={clear(setFirstName)}>
-              <Text style={styles.clearText}>✕</Text>
-            </TouchableOpacity>
-          )}
-        </View>
-
-        <View style={styles.fieldWrapperRow}>
-          <TextInput
-            style={styles.input}
-            placeholder="Apellidos"
-            value={lastName}
-            onChangeText={setLastName}
-          />
-          {lastName.length > 0 && (
-            <TouchableOpacity style={styles.clearButton} onPress={clear(setLastName)}>
-              <Text style={styles.clearText}>✕</Text>
-            </TouchableOpacity>
-          )}
-        </View>
-
-        <View style={styles.fieldWrapperRow}>
-          <TextInput
-            style={styles.input}
-            placeholder="Monto del prestamo"
-            keyboardType="numeric"
-            value={amount}
-            onChangeText={setAmount}
-          />
-          {amount.length > 0 && (
-            <TouchableOpacity style={styles.clearButton} onPress={clear(setAmount)}>
-              <Text style={styles.clearText}>✕</Text>
-            </TouchableOpacity>
-          )}
-        </View>
-
-        <Selector
+        <InputWithDelete
+          value={phone}
+          onChangeText={setPhone}
+          placeholder='Teléfono'
         />
-
-        <Button
-            title='Enviar datos'
-            type='secondary'
+        <InputWithDelete
+          value={firstName}
+          onChangeText={setFirstName}
+          placeholder='Nombres'
         />
+        <InputWithDelete
+          value={lastName}
+          onChangeText={setLastName}
+          placeholder='Apellidos'
+        />
+        <InputWithDelete
+          value={amount}
+          onChangeText={setAmount}
+          placeholder='Monto del préstamo'
+        />
+        <View style={{gap: 16}}>
+          <Selector
+            items={installmentOptions}
+            onSelect={handleInstallmentSelect}
+            placeholder="Seleccione número de cuotas"
+            selectedId={installments}
+          />
+
+          <Button
+              title='Enviar datos'
+              type='secondary'
+              onPress={onSubmit}
+              disabled={!isValidEmail}
+          />
+        </View>
+        
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -152,8 +158,7 @@ const LeanScreen = (props: Props) => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    paddingBottom: 40,
-    backgroundColor: '#F5F5F5',
+    paddingBottom: 20,
   },
   title: {
     fontSize: 18,
@@ -168,7 +173,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 6,
+    gap: 4
   },
   docTypeButton: {
     borderWidth: 1.5,
@@ -203,7 +209,7 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: '#FFF',
     borderRadius: 8,
-    paddingVertical: 14,
+    paddingVertical: 12,
     paddingHorizontal: 16,
     borderWidth: 1.5,
     borderColor: '#7D2EFF',

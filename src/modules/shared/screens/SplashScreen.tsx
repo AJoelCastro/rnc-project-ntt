@@ -24,7 +24,7 @@ const SplashScreen = ({isInitializing, nextScreen}: Props) => {
        const token = await SecureStorage.getItem('token'); 
 
       // Aqui se valida con el token de store en zustandxs
-    //   const token = userData?.token
+      //const token = userData?.token
     
       if (token !== undefined && token !== null) {
         console.log("Token found, navigating to Init:", token);
