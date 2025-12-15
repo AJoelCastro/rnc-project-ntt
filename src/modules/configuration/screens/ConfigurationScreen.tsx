@@ -6,7 +6,7 @@ import { useLogin } from '@/store/LoginStore'
 
 type Props = {}
 
-const ConfigurationScreen = ({}: Props) => {
+const ConfigurationScreen = ({ }: Props) => {
 
     const navigate = useNavigation()
     const { clearUserData } = useLogin()
@@ -14,8 +14,8 @@ const ConfigurationScreen = ({}: Props) => {
     const handleCallPress = async () => {
         const phoneNumber = 'tel:+51925187731'
         try {
-            Linking.openURL(phoneNumber)
-            
+            await Linking.openURL(phoneNumber)
+
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : 'Ocurrió un error al iniciar sesión'
             Alert.alert('Error', errorMessage)
@@ -30,21 +30,21 @@ const ConfigurationScreen = ({}: Props) => {
                 routes: [{ name: 'Authentication' as never }],
             })
         )
-    } 
+    }
 
 
     return (
         <View style={styles.container}>
-            <Header title='Configuración de la Aplicación' iconName='' onBack={()=>navigate.goBack()}/>
+            <Header title='Configuración de la Aplicación' iconName='' onBack={() => navigate.goBack()} />
             <View style={styles.listConfig}>
-                <ConfigItem title='Seguridad' subtitle='Bloquea tu tarjeta y administra tu APP'/>
-                <ConfigItem subtitle='Compra por internet, efectivo, extranjero'/>
-                <ConfigItem title='Apple Pay' subtitle='Administra tus tarjetas afiliadas'/>
-                <ConfigItem title='Personaliza tu APP' subtitle='Yapea por celular'/>
+                <ConfigItem title='Seguridad' subtitle='Bloquea tu tarjeta y administra tu APP' />
+                <ConfigItem subtitle='Compra por internet, efectivo, extranjero' />
+                <ConfigItem title='Apple Pay' subtitle='Administra tus tarjetas afiliadas' />
+                <ConfigItem title='Personaliza tu APP' subtitle='Yapea por celular' />
             </View>
             <View style={styles.contactContainer}>
                 <Text style={styles.contactText}>
-                    Si tienes alguna duda contactar al 
+                    Si tienes alguna duda contactar al
                 </Text>
                 <TouchableOpacity onPress={handleCallPress} activeOpacity={0.7}>
                     <Text style={styles.phoneNumber}>
