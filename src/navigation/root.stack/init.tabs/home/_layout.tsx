@@ -4,6 +4,7 @@ import TransactionScreen from '@/modules/transaction/screens/TransactionScreen';
 import WelcomeScreen from '@/modules/transaction/screens/WelcomeScreen';
 import LeanScreen from '@/modules/transaction/screens/LeanScreen';
 import CardScreen from '@/modules/transaction/screens/CardScreen';
+import ServicesScreen from '@/modules/transaction/screens/ServicesScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,11 @@ const HomeLayout = ({}: Props) => {
       <Stack.Screen
         name='LeanHome'
         component={LeanScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='ServicesHome'
+        component={ServicesScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

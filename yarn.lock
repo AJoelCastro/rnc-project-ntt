@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@arturocastro/react-native-rnc-library-ntt@^1.6.20":
-  version "1.6.20"
-  resolved "https://registry.yarnpkg.com/@arturocastro/react-native-rnc-library-ntt/-/react-native-rnc-library-ntt-1.6.20.tgz#24afdd3337359b473b1dab178b9c1836f993f86a"
-  integrity sha512-/fBPjFgyqbnrvjzk22/+9z3bnt76wk7UbBDzk/6A7ecinRl77xZ2ru9yr076BdD/nc6yKCTBRmU3Mho+xm19fA==
+"@arturocastro/react-native-rnc-library-ntt@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@arturocastro/react-native-rnc-library-ntt/-/react-native-rnc-library-ntt-1.7.0.tgz#978f28568ef5c31a0ec501978bac108d5c946796"
+  integrity sha512-IpcZY27z6/VE8uZpIFPJQZeNJQGfx+eTSp9eYLAtDs9jN7v8V5B5QO8aIStg7djnKlCkxGhT4D1Nu1O91xEODg==
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.24.7", "@babel/code-frame@^7.27.1":
   version "7.27.1"

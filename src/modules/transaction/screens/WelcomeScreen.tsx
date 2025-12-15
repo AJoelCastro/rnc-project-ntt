@@ -42,7 +42,7 @@ const WelcomeScreen = ({}: Props) => {
       id: 'servicios',
       title: 'Servicios',
       description: 'Aquí podrás pagar todos tus servicios',
-      onPress: () => navigation.navigate('Servicios'),
+      onPress: () => navigation.navigate('ServicesHome' as never),
     },
   ];
 
