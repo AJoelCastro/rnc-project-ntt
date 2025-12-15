@@ -2,15 +2,15 @@ import { View, Text, StyleSheet, Animated, Easing } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import { useTheme } from '@/modules/shared/hooks/useTheme'
 import { CommonActions, useNavigation } from '@react-navigation/native'
-import { SecureStorage } from '@arturocastro/react-native-rnc-library-ntt'
+// import { SecureStorage } from '@arturocastro/react-native-rnc-library-ntt'
 import { useLogin } from '@/store/LoginStore'
 
 type Props = {
-    isInitializing?: boolean
-    nextScreen?: string
+  isInitializing?: boolean
+  nextScreen?: string
 }
 
-const SplashScreen = ({isInitializing, nextScreen}: Props) => {
+const SplashScreen = ({ isInitializing, nextScreen }: Props) => {
 
   const { colors } = useTheme()
   const fadeAnim = useRef(new Animated.Value(0)).current
@@ -21,57 +21,57 @@ const SplashScreen = ({isInitializing, nextScreen}: Props) => {
   useEffect(() => {
     const checkTokenAndNavigate = async () => {
       // Aqui se valoida con el token nativo
-       const token = await SecureStorage.getItem('token'); 
+      //const token = await SecureStorage.getItem('token'); 
 
       // Aqui se valida con el token de store en zustandxs
-      //const token = userData?.token
-    
+      const token = userData?.token
+
       if (token !== undefined && token !== null) {
         console.log("Token found, navigating to Init:", token);
         navigate.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [
-                    { name: 'Init' as never }, // Define la nueva pila con 'Init' como única ruta
-                ],
-            })
+          CommonActions.reset({
+            index: 0,
+            routes: [
+              { name: 'Init' as never }, // Define la nueva pila con 'Init' como única ruta
+            ],
+          })
         );
       } else {
         console.log("No token found, navigating to Login.");
         navigate.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [
-                    { name: 'Login' as never }, // Define la nueva pila con 'Init' como única ruta
-                ],
-            })
+          CommonActions.reset({
+            index: 0,
+            routes: [
+              { name: 'Login' as never }, // Define la nueva pila con 'Init' como única ruta
+            ],
+          })
         );
       }
     }
-    if(isInitializing) {
-        setTimeout(() => {
-            checkTokenAndNavigate();
-        }, 2000);
+    if (isInitializing) {
+      setTimeout(() => {
+        checkTokenAndNavigate();
+      }, 2000);
     }
-    if(nextScreen) {
-        setTimeout(() => {
-            navigate.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [
-                    { name: nextScreen as never }, // Define la nueva pila con 'Init' como única ruta
-                ],
-            })
+    if (nextScreen) {
+      setTimeout(() => {
+        navigate.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [
+              { name: nextScreen as never }, // Define la nueva pila con 'Init' como única ruta
+            ],
+          })
         );
-        }, 2000);
+      }, 2000);
     }
-    
+
     // Ejecutar la función asíncrona
 
     // Nota: Es mejor limpiar el efecto para evitar navegaciones duplicadas
     // si el componente se desmonta mientras la promesa está pendiente.
   }, [navigate, isInitializing, nextScreen, userData]) // Dependencia de navigate
-  
+
   useEffect(() => {
     Animated.parallel([
       Animated.timing(fadeAnim, {
