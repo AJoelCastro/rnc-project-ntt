@@ -12,9 +12,9 @@ jest.mock('@react-navigation/bottom-tabs', () => {
     };
 });
 
-jest.mock('../../../../../../src/navigation/root.stack/init.tabs/home/_layout', () => () => null);
-jest.mock('../../../../../../src/navigation/root.stack/init.tabs/chat/_layout', () => () => null);
-jest.mock('../../../../../../src/navigation/root.stack/init.tabs/configuration/_layout', () => () => null);
+jest.mock('@/navigation/root.stack/init.tabs/home/_layout', () => () => null);
+jest.mock('@/navigation/root.stack/init.tabs/chat/_layout', () => () => null);
+jest.mock('@/navigation/root.stack/init.tabs/configuration/_layout', () => () => null);
 
 describe('InitLayout', () => {
     it('renders correctly', () => {

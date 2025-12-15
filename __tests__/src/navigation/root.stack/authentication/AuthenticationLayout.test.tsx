@@ -17,8 +17,8 @@ jest.mock('@react-navigation/native-stack', () => {
 
 // Mock screens
 jest.mock('@/modules/shared/screens/SplashScreen', () => () => null);
-jest.mock('../../../../../../src/modules/authentication/screens/LoginScreen', () => () => null);
-jest.mock('../../../../../../src/modules/authentication/screens/RegisterScreen', () => () => null);
+jest.mock('@/modules/authentication/screens/LoginScreen', () => () => null);
+jest.mock('@/modules/authentication/screens/RegisterScreen', () => () => null);
 
 describe('AuthenticationLayout', () => {
     it('renders correctly', () => {
