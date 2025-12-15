@@ -1,6 +1,6 @@
-import { Text } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import ConfigurationScreen from '@/modules/configuration/screens/ConfigurationScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,12 +11,7 @@ const ConfigurationLayout = ({}: Props) => {
     <Stack.Navigator>
       <Stack.Screen
         name="WelcomeConfiguration"
-        component={() => <Text>Configuration Screen</Text>}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="DetailsConfiguration"
-        component={() => <Text>Configuration Details Screen</Text>}
+        component={ConfigurationScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
