@@ -1,6 +1,7 @@
 import { Text } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import ChatScreen from '@/modules/chat/screens/ChatScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,7 +12,7 @@ const ChatLayout = ({}: Props) => {
     <Stack.Navigator>
       <Stack.Screen
         name="WelcomeChat"
-        component={() => <Text>Chat Screen</Text>}
+        component={ChatScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
