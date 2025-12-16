@@ -17,7 +17,8 @@ const SplashScreen = ({ isInitializing, nextScreen }: Props) => {
   const scaleAnim = useRef(new Animated.Value(0.5)).current
   const translateYAnim = useRef(new Animated.Value(50)).current
   const navigate = useNavigation();
-  const { userData } = useLogin()
+  const { userData, setUserData } = useLogin()
+
   useEffect(() => {
     const checkTokenAndNavigate = async () => {
       // Aqui se valoida con el token nativo
@@ -26,8 +27,16 @@ const SplashScreen = ({ isInitializing, nextScreen }: Props) => {
       // Aqui se valida con el token de store en zustandxs
       //const token = userData?.token
 
-      if (token !== undefined && token !== null) {
+      if (token !== undefined && token !== null && token !== '') {
         console.log("Token found, navigating to Init:", token);
+        setUserData({
+          idUser: 10,
+          name: "Arturo",
+          lastName: "Castro",
+          email: "arturo@gmail.com",
+          phone: "924187731",
+          token: "dummy-auth-token-zustand"
+        })
         navigate.dispatch(
           CommonActions.reset({
             index: 0,

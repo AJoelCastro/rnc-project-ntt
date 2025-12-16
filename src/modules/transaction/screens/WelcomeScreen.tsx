@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MenuCard } from '../components/molecules/MenuCard';
-import { url } from 'node:inspector';
+import { useLogin } from '@/store/LoginStore';
 
 type RootStackParamList = {
   Tarjetas: undefined;
@@ -19,7 +19,7 @@ type Props = {};
 const WelcomeScreen = ({ }: Props) => {
   const navigation = useNavigation<WelcomeScreenNavigationProp>();
   const isDarkMode = useColorScheme() === 'dark';
-
+  const { userData } = useLogin()
   const menuItems = [
     {
       id: 'tarjetas',
@@ -50,7 +50,7 @@ const WelcomeScreen = ({ }: Props) => {
   return (
     <ScrollView style={[styles.container, { backgroundColor: isDarkMode ? '#1A1A1A' : '#F5F5F5' }]}>
       <View style={styles.header}>
-        <Text style={styles.greeting}>Bienvenido <Text style={styles.name}>César</Text></Text>
+        <Text style={styles.greeting}>Bienvenid@ <Text style={styles.name}>{userData?.name} {userData?.lastName}</Text></Text>
       </View>
 
       <View style={styles.gridContainer}>
@@ -84,13 +84,13 @@ const WelcomeScreen = ({ }: Props) => {
         <TouchableOpacity
           onPress={() =>
             Linking.openURL(
-              'https://creditkarma-cms.imgix.net/wp-content/uploads/2024/06/image_1c88ea.png?auto=compress'
+              'https://t4.ftcdn.net/jpg/02/13/97/75/360_F_213977586_B23DBDMd1BMTjb405USK26GKBnXTOULQ.jpg'
             )
           }
         >
           <Image
             source={{
-              uri: 'https://creditkarma-cms.imgix.net/wp-content/uploads/2024/06/image_1c88ea.png?auto=compress',
+              uri: 'https://t4.ftcdn.net/jpg/02/13/97/75/360_F_213977586_B23DBDMd1BMTjb405USK26GKBnXTOULQ.jpg',
             }}
             style={{ width: 150, height: 150, marginHorizontal: 8 }}
             resizeMode="contain"
@@ -99,13 +99,13 @@ const WelcomeScreen = ({ }: Props) => {
         <TouchableOpacity
           onPress={() =>
             Linking.openURL(
-              'https://creditkarma-cms.imgix.net/wp-content/uploads/2024/06/image_1c88ea.png?auto=compress'
+              'https://t4.ftcdn.net/jpg/02/13/97/75/360_F_213977586_B23DBDMd1BMTjb405USK26GKBnXTOULQ.jpg'
             )
           }
         >
           <Image
             source={{
-              uri: 'https://creditkarma-cms.imgix.net/wp-content/uploads/2024/06/image_1c88ea.png?auto=compress',
+              uri: 'https://t4.ftcdn.net/jpg/02/13/97/75/360_F_213977586_B23DBDMd1BMTjb405USK26GKBnXTOULQ.jpg',
             }}
             style={{ width: 150, height: 150, marginHorizontal: 8 }}
             resizeMode="contain"

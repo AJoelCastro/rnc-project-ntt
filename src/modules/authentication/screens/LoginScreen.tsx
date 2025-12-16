@@ -39,21 +39,20 @@ const LoginScreen = ({ navigation }: Props) => {
       await SecureStorage.setItem('token', 'dummy-auth-token')
       setUserData({
         idUser: 10,
-        name: "Cesar",
-        lastName: "Solano",
-        email: "cesar@hotmail.com",
-        phone: "9426517213",
+        name: "Arturo",
+        lastName: "Castro",
+        email: "arturo@gmail.com",
+        phone: "924187731",
         token: "dummy-auth-token-zustand"
       })
-      // Aquí iría la lógica real de autenticación
       setTimeout(() => {
         navigate.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [
-                    { name: 'Init' as never }, // Define la nueva pila con 'Init' como única ruta
-                ],
-            })
+          CommonActions.reset({
+            index: 0,
+            routes: [
+              { name: 'Init' as never }
+            ],
+          })
         );
         setIsLoading(false)
       }, 2000);
@@ -67,7 +66,7 @@ const LoginScreen = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Iniciar sesión</Text>
-      
+
       <InputEmail
         value={email}
         onChangeText={setEmail}
@@ -85,7 +84,7 @@ const LoginScreen = ({ navigation }: Props) => {
             <Text style={styles.loadingText}>Iniciando sesión...</Text>
           </View>
         ) : (
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.button, (!isEmailValid || !password) && styles.buttonDisabled]}
             onPress={onLogin}
             disabled={!isEmailValid || !password}

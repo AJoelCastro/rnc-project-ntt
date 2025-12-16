@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text, TouchableOpacity, Linking, Alert } from 'react-native'
 import React from 'react'
-import { ConfigItem, Header } from '@arturocastro/react-native-rnc-library-ntt'
+import { ConfigItem, Header, SecureStorage } from '@arturocastro/react-native-rnc-library-ntt'
 import { CommonActions, useNavigation } from '@react-navigation/native'
 import { useLogin } from '@/store/LoginStore'
 
@@ -24,6 +24,7 @@ const ConfigurationScreen = ({ }: Props) => {
 
     const handleLogout = async () => {
         clearUserData()
+        await SecureStorage.setItem('token', '')
         navigate.dispatch(
             CommonActions.reset({
                 index: 0,
