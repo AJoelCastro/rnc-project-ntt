@@ -16,7 +16,17 @@ const linking = {
   prefixes: ['example://'],
   config: {
     screens: {
-      LoginScreen: 'login',
+      Authentication: 'auth',
+
+      Init: {
+        screens: {
+          Configuracion: {
+            screens: {
+              WelcomeConfiguration: 'configuracion',
+            },
+          },
+        },
+      },
     },
   },
 };
@@ -27,31 +37,31 @@ function App() {
   return (
 
     <NavigationContainer linking={linking}>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <AppContent />
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <AppContent />
     </NavigationContainer>
 
   );
 }
 
 function AppContent() {
-  const {colors} = useTheme()
-  
+  const { colors } = useTheme()
+
   return (
 
-    <SafeAreaView 
+    <SafeAreaView
       style={
         [
           styles.container,
           {
-            
+
             backgroundColor: colors.background,
 
           }
         ]
       }
     >
-      <RootLayout/>
+      <RootLayout />
     </SafeAreaView>
   );
 }

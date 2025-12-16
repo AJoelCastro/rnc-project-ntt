@@ -1,8 +1,9 @@
-import { View, Text, ScrollView, StyleSheet, useColorScheme } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, useColorScheme, Linking, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MenuCard } from '../components/molecules/MenuCard';
+import { url } from 'node:inspector';
 
 type RootStackParamList = {
   Tarjetas: undefined;
@@ -15,7 +16,7 @@ type WelcomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>
 
 type Props = {};
 
-const WelcomeScreen = ({}: Props) => {
+const WelcomeScreen = ({ }: Props) => {
   const navigation = useNavigation<WelcomeScreenNavigationProp>();
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -64,6 +65,53 @@ const WelcomeScreen = ({}: Props) => {
           </View>
         ))}
       </View>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <TouchableOpacity
+          onPress={() =>
+            Linking.openURL(
+              'example://configuracion'
+            )
+          }
+        >
+          <Image
+            source={{
+              uri: 'https://static.vecteezy.com/system/resources/thumbnails/006/801/514/small/settings-configuration-icon-solid-style-icon-design-element-icon-template-background-free-vector.jpg',
+            }}
+            style={{ width: 150, height: 150, marginHorizontal: 8 }}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            Linking.openURL(
+              'https://creditkarma-cms.imgix.net/wp-content/uploads/2024/06/image_1c88ea.png?auto=compress'
+            )
+          }
+        >
+          <Image
+            source={{
+              uri: 'https://creditkarma-cms.imgix.net/wp-content/uploads/2024/06/image_1c88ea.png?auto=compress',
+            }}
+            style={{ width: 150, height: 150, marginHorizontal: 8 }}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            Linking.openURL(
+              'https://creditkarma-cms.imgix.net/wp-content/uploads/2024/06/image_1c88ea.png?auto=compress'
+            )
+          }
+        >
+          <Image
+            source={{
+              uri: 'https://creditkarma-cms.imgix.net/wp-content/uploads/2024/06/image_1c88ea.png?auto=compress',
+            }}
+            style={{ width: 150, height: 150, marginHorizontal: 8 }}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+      </ScrollView>
     </ScrollView>
   );
 };
