@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@arturocastro/react-native-rnc-library-ntt": "^1.8.3",
+    "@arturocastro/react-native-rnc-library-ntt": "^1.9.1",
     "@react-native-async-storage/async-storage": "^2.2.0",
     "@react-native/new-app-screen": "0.82.1",
     "@react-navigation/bottom-tabs": "^7.8.11",
